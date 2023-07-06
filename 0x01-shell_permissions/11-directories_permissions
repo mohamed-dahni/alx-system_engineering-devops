@@ -1,2 +1,9 @@
 #!/bin/bash
-find . -type d -exec chmod +x {}
+
+# Find all subdirectories recursively
+subdirectories=$(find . -type d)
+
+# Loop through each subdirectory and add execute permission for owner, group, and others
+for dir in $subdirectories; do
+  chmod ugo+x "$dir"
+done
