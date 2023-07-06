@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -type f -name '*' | grep '^[A-Z]' -exec mv "$@" /tmp/u
+find . -type f -name '*' | grep '^./[A-Z]' -exec mv "$@" /tmp/u
