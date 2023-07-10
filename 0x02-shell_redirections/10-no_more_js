@@ -1,2 +1,2 @@
 #!/bin/bash
-rm -f *.js
+find . -maxdepth 0 -type f -name "*.js" | rm -f
