@@ -1,23 +1,6 @@
 #!/usr/bin/env bash
-# Installs nginx server
-
-# Ensure script runs with sudo
-if [[ $EUID -ne 0 ]]; then
-    echo "This script must be run as root" 
-    exit 1
-fi
-
-# Update package lists
-apt-get update
-
-# Install nginx
-apt-get install -y nginx
-
-# Allow Nginx HTTP traffic
-ufw allow 'Nginx HTTP'
-
-# Create index.html with "Hello World!" message
+# Bash script that Install nginx on your web-01 server and requirements
+apt-get update -y
+apt-get install nginx -y
 echo "Hello World!" > /var/www/html/index.html
-
-# Start nginx service
 service nginx start
