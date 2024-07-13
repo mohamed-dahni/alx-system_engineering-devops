@@ -26,10 +26,9 @@ if [ ! -f "$file_path" ]; then
 fi
 
 # Transfer file using scp with strict host key checking disabled
-scp -o StrictHostKeyChecking=no -i "$ssh_key" "$file_path" "$username@$server_ip:~/"
-
 # Check if scp command was successful
-if [ $? -eq 0 ]; then
+if ! scp -o StrictHostKeyChecking=no -i "$ssh_key" "$file_path" "$username@$server_ip:~/"
+then
     echo "File '$file_path' successfully transferred to $username@$server_ip:~/"
 else
     echo "Error: File transfer failed."
