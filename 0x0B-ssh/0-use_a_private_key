@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 
-# Connect to the computer at 34.205.65.80 with the username ubuntu using the school private key
+# Connect to the computer at 34.205.65.80 with the username ubuntu 
+# using the school private key
 ssh -i ~/.ssh/school ubuntu@34.205.65.80
