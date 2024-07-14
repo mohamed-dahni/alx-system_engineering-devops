@@ -1,32 +1,21 @@
 #!/usr/bin/env bash
-# Configures a new ubuntu machine by installing
-# Nginx where it should be listening on port 80
-# Serve a page that would return a Hello World string
+# This script installs and configures Nginx to serve a page containing "Hello World!" on Ubuntu 16.04 LTS.
 
-echo -e "Updating and installing Nginx.\n"
-sudo apt-get update -y -qq && \
-	 sudo apt-get install nginx -y
+# Exit immediately if a command exits with a non-zero status.
+set -e
 
-echo -e "\nSetting up some minor stuff.\n"
+# Update package list and install nginx
+sudo apt-get update -y
+sudo apt-get install nginx -y
 
-# starting nginx service
+# Create the index.html file with "Hello World!" content
+echo "Hello World!" | sudo tee /var/www/html/index.html > /dev/null
+
+# Ensure nginx is running
 sudo service nginx start
 
-# allowing nginx on firewall
-sudo ufw allow 'Nginx HTTP'
-
-# Give the user ownership to website files for easy editing
-sudo chown -R "$USER":"$USER" /var/www/html
-sudo chmod -R 755 /var/www
-
-# Backup default index
-cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bckp
-
-# Creating new index
-echo -e "Hello World!" | dd status=none of=/var/www/html/index.nginx-debian.html
-
-# Restarting nginx
+# Restart nginx without using systemctl
 sudo service nginx restart
 
-echo -e "\nCompleted.\n"
+echo "Nginx installation and configuration complete."
 
