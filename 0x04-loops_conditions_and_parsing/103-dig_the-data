@@ -4,6 +4,4 @@
 LOG_FILE="apache-access.log"
 
 # Use awk to count occurrences and format the output
-awk '{print $1, $9}' "$LOG_FILE" | 
-    awk '{count[$1, $2]++} END {for (ip_http in count) {split(ip_http, arr, SUBSEP); print count[ip_http], arr[1], arr[2]}}' | 
-    sort -nr
+awk '{count[$1, $9]++} END {for (ip_http in count) {split(ip_http, arr, SUBSEP); print count[ip_http], arr[1], arr[2]}}' "$LOG_FILE" | sort -nr
